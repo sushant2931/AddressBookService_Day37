@@ -10,12 +10,17 @@ public class AddressBookMain {
         System.out.println("..... Welcome In Address Book System Program Using JDBC");
         AddressBookMain addressBookMain = new AddressBookMain();
         addressBookMain.retrieveData();
+        addressBookMain.updateContacts();
     }
 
         private void retrieveData() throws SQLException {
             List<Contacts> addressBookList = addressBook.retrieveData();
             System.out.println(addressBookList);
         }
+       private void updateContacts(){
+        addressBook.updateContacts(8002695700l,824123l);
     }
+}
+
 
 

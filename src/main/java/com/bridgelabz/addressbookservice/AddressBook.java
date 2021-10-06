@@ -21,6 +21,7 @@ public class AddressBook {
         }
         return connection;
     }
+
     public List<Contacts> retrieveData() throws SQLException {
         ResultSet resultSet = null;
         List<Contacts> employeeInfoList = new ArrayList<>();
@@ -46,5 +47,19 @@ public class AddressBook {
             System.out.println(e);
         }
         return employeeInfoList;
+
+    }
+
+    public void updateContacts(long phoneNumber, long zip) {
+        try (Connection connection = getConnection()) {
+            Statement statement = connection.createStatement();
+            String query = "update address_book set zip=" + zip + " where phoneNumber=" + phoneNumber + "";
+            int result = statement.executeUpdate(query);
+            if (result == 1)
+                System.out.println("zip updated");
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
     }
 }
