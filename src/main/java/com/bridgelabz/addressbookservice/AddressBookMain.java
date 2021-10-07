@@ -11,6 +11,12 @@ public class AddressBookMain {
         AddressBookMain addressBookMain = new AddressBookMain();
         addressBookMain.retrieveData();
         addressBookMain.updateContacts();
+        addressBookMain.retrieveDataBetweenRange();
+
+    }
+    private void retrieveDataBetweenRange()throws SQLException {
+        List<Contacts> addressBookList = addressBook.retrieveDataBetweenRange();
+        System.out.println(addressBookList);
     }
 
         private void retrieveData() throws SQLException {
@@ -21,6 +27,7 @@ public class AddressBookMain {
         addressBook.updateContacts(8002695700l,824123l);
     }
 }
+
 
 
 

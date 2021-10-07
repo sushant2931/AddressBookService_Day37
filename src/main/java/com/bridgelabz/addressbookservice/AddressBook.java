@@ -62,4 +62,35 @@ public class AddressBook {
 
         }
     }
+    public List<Contacts> retrieveDataBetweenRange() throws SQLException {
+        ResultSet resultSet = null;
+        List<Contacts> employeeInfoList = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            Statement statement = connection.createStatement();
+            String sql = "select * from address_book where start_date between '2020-08-01' AND '2020-09-30'";
+            resultSet = statement.executeQuery(sql);
+            int count = 1;
+            while (resultSet.next()) {
+                count++;
+                Contacts contacts = new Contacts();
+                contacts.setFirstName(resultSet.getString("firstName"));
+                contacts.setLastName(resultSet.getString("lastName"));
+                contacts.setAddress(resultSet.getString("address"));
+                contacts.setCity(resultSet.getString("city"));
+                contacts.setState(resultSet.getString("state"));
+                contacts.setZip(resultSet.getLong("zip"));
+                contacts.setPhoneNumber(resultSet.getLong("phoneNumber"));
+                contacts.setEmail(resultSet.getString("email"));
+                System.out.println(employeeInfoList.add(contacts));;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return employeeInfoList;
+    }
 }
+
+
+
+
+
